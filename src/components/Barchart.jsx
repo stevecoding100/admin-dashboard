@@ -3,7 +3,7 @@ import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
 import { mockBarData as data } from "../data/mockData";
 
-const Barchart = ({ isDashboard = false }) => {
+const BarChart = ({ isDashboard = false }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     return (
@@ -132,4 +132,4 @@ const Barchart = ({ isDashboard = false }) => {
     );
 };
 
-export default Barchart;
+export default BarChart;
