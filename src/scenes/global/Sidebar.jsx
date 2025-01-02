@@ -51,7 +51,7 @@ const ProSidebar = () => {
     const [selected, setSelected] = useState("Dashboard");
 
     return (
-        <Box>
+        <Box sx={{ height: "100vh", display: "flex" }}>
             <Sidebar
                 collapsed={isCollapsed}
                 backgroundColor={`${colors.primary[400]} !important`}
