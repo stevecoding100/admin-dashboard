@@ -21,8 +21,10 @@ const Dashboard = () => {
             {/* HEADER */}
             <Box
                 display="flex"
+                flexDirection={{ xs: "column", sm: "row" }}
                 justifyContent="space-between"
                 alignItems="center"
+                gap="10px"
             >
                 <Header
                     title="DASHBOARD"
@@ -37,6 +39,7 @@ const Dashboard = () => {
                             fontSize: "14px",
                             fontWeight: "bold",
                             padding: "10px 20px",
+                            margin: "20px",
                         }}
                     >
                         <DownloadOutlinedIcon sx={{ mr: "10px" }} />
@@ -47,113 +50,105 @@ const Dashboard = () => {
             {/* Grid & Charts */}
             <Box
                 display="grid"
-                gridTemplateColumns="repeat(12,1fr)"
+                gridTemplateColumns={{
+                    xs: "repeat(1, 1fr)", // Single-column layout for mobile
+                    sm: "repeat(12, 1fr)", // Multi-column for larger screens
+                }}
                 gridAutoRows="140px"
                 gap="20px"
             >
                 {/* Row 1 */}
-                <Box
-                    gridColumn="span 3"
-                    backgroundColor={colors.primary[400]}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                >
-                    <StatBox
-                        title="12,361"
-                        subtitle="Emails Sent"
-                        progress="0.75"
-                        increase="+14%"
-                        icon={
+
+                {[
+                    {
+                        title: "12,361",
+                        subtitle: "Emails Sent",
+                        progress: 0.75,
+                        increase: "+14%",
+                        icon: (
                             <EmailIcon
                                 sx={{
                                     color: colors.greenAccent[600],
                                     fontSize: "26px",
                                 }}
                             />
-                        }
-                    />
-                </Box>
-
-                <Box
-                    gridColumn="span 3"
-                    backgroundColor={colors.primary[400]}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                >
-                    <StatBox
-                        title="431,225"
-                        subtitle="Sales Obtained"
-                        progress="0.5"
-                        increase="+21%"
-                        icon={
+                        ),
+                    },
+                    {
+                        title: "431,225",
+                        subtitle: "Sales Obtained",
+                        progress: 0.5,
+                        increase: "+21%",
+                        icon: (
                             <PointOfSaleIcon
                                 sx={{
                                     color: colors.greenAccent[600],
                                     fontSize: "26px",
                                 }}
                             />
-                        }
-                    />
-                </Box>
-
-                <Box
-                    gridColumn="span 3"
-                    backgroundColor={colors.primary[400]}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                >
-                    <StatBox
-                        title="32,555"
-                        subtitle="New Clients"
-                        progress="0.30"
-                        increase="+5%"
-                        icon={
+                        ),
+                    },
+                    {
+                        title: "32,555",
+                        subtitle: "New Clients",
+                        progress: 0.3,
+                        increase: "+5%",
+                        icon: (
                             <PersonAddIcon
                                 sx={{
                                     color: colors.greenAccent[600],
                                     fontSize: "26px",
                                 }}
                             />
-                        }
-                    />
-                </Box>
-
-                <Box
-                    gridColumn="span 3"
-                    backgroundColor={colors.primary[400]}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                >
-                    <StatBox
-                        title="1,235,134"
-                        subtitle="Traffic Inbound"
-                        progress="0.80"
-                        increase="+43%"
-                        icon={
+                        ),
+                    },
+                    {
+                        title: "1,235,134",
+                        subtitle: "Traffic Inbound",
+                        progress: 0.8,
+                        increase: "+43%",
+                        icon: (
                             <TrafficIcon
                                 sx={{
                                     color: colors.greenAccent[600],
                                     fontSize: "26px",
                                 }}
                             />
-                        }
-                    />
-                </Box>
+                        ),
+                    },
+                ].map((stat, i) => (
+                    <Box
+                        key={i}
+                        gridColumn={{ xs: "span 12", sm: "span 3" }}
+                        backgroundColor={colors.primary[400]}
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <StatBox
+                            title={stat.title}
+                            subtitle={stat.subtitle}
+                            progress={stat.progress}
+                            increase={stat.increase}
+                            icon={stat.icon}
+                        />
+                    </Box>
+                ))}
+
                 {/* Row 2 */}
                 <Box
-                    gridColumn="span 8"
+                    gridColumn={{ xs: "span 12", sm: "span 8" }}
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                 >
                     <Box
                         mt="25px"
                         p="0 30px"
+                        display="flex"
+                        flexDirection={{ xs: "column", sm: "row" }}
                         justifyContent="space-between"
                         alignItems="center"
+                        gap="10px"
                     >
                         <Box>
                             <Typography
@@ -182,13 +177,13 @@ const Dashboard = () => {
                             </IconButton>
                         </Box>
                     </Box>
-                    <Box height="230px" m="-20px 0 0 0">
+                    <Box height={{ xs: "150px", sm: "230px" }} m="-20px 0 0 0">
                         <LineChart isDashboard={true} />
                     </Box>
                 </Box>
                 {/* Transactions */}
                 <Box
-                    gridColumn="span 4"
+                    gridColumn={{ xs: "span 12", sm: "span 4" }}
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     overflow="auto"
@@ -245,7 +240,7 @@ const Dashboard = () => {
                 </Box>
                 {/* Row 3 */}
                 <Box
-                    gridColumn="span 4"
+                    gridColumn={{ xs: "span 12", sm: "span 4" }}
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     p="30px"
@@ -273,7 +268,7 @@ const Dashboard = () => {
                     </Box>
                 </Box>
                 <Box
-                    gridColumn="span 4"
+                    gridColumn={{ xs: "span 12", sm: "span 4" }}
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                 >
@@ -289,7 +284,7 @@ const Dashboard = () => {
                     </Box>
                 </Box>
                 <Box
-                    gridColumn="span 4"
+                    gridColumn={{ xs: "span 12", sm: "span 4" }}
                     gridRow="span 2"
                     backgroundColor={colors.primary[400]}
                     padding="30px"

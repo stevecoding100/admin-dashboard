@@ -12,6 +12,7 @@ import {
     ListItemText,
     Typography,
     useTheme,
+    useMediaQuery,
 } from "@mui/material";
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
@@ -19,6 +20,7 @@ import { tokens } from "../../theme";
 const Calendar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const isMobile = useMediaQuery("(max-width:600px)");
     const [currentEvents, setCurrentEvents] = useState([]);
 
     const handleDateClick = (selected) => {
@@ -47,18 +49,23 @@ const Calendar = () => {
         }
     };
     return (
-        <Box m="20px">
+        <Box m={isMobile ? "10px" : "20px"}>
             <Header
                 title="CALENDAR"
                 subtitle="Full Calendar Interactive Page"
             />
-            <Box display="flex" justifyContent="space-between">
+            <Box
+                display="flex"
+                flexDirection={isMobile ? "column" : "row"}
+                justifyContent="space-between"
+            >
                 {/* Calendar sidebar */}
                 <Box
-                    flex="1 1 20%"
+                    flex={isMobile ? "1 1 auto" : "1 1 20%"}
                     backgroundColor={colors.primary[400]}
                     p="15px"
                     borderRadius="4px"
+                    mb={isMobile ? "20px" : "0"}
                 >
                     <Typography variant="h5">Events</Typography>
                     <List>
@@ -88,7 +95,7 @@ const Calendar = () => {
                     </List>
                 </Box>
                 {/* Calendar */}
-                <Box flex="1 1 100%" ml="15px">
+                <Box flex="1 1 100%" ml={isMobile ? "0" : "15px"}>
                     <FullCalendar
                         height="75vh"
                         plugins={[
@@ -100,8 +107,11 @@ const Calendar = () => {
                         headerToolbar={{
                             left: "prev,next today",
                             center: "title",
-                            right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+                            right: isMobile
+                                ? "dayGridMonth,listMonth,timeGridDay,listMonth"
+                                : "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
                         }}
+                        titleFormat={{ year: "numeric", month: "short" }}
                         initialView="dayGridMonth"
                         editable={true}
                         selectable={true}
