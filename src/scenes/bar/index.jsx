@@ -1,15 +1,12 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import Header from "../../components/Header";
 import BarChart from "../../components/BarChart";
 
 const Bar = () => {
-    // Check if the screen size is small (mobile)
-    const isMobile = useMediaQuery("(max-width:600px)");
-
     return (
         <Box
-            m={isMobile ? "10px" : "20px"}
             sx={{
+                margin: { xs: "10px", md: "20px" },
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -17,9 +14,9 @@ const Bar = () => {
         >
             <Header title="Bar Chart" subtitle="Simple Bar Chart" />
             <Box
-                height={isMobile ? "50vh" : "75vh"}
-                width={isMobile ? "100%" : "auto"}
                 sx={{
+                    height: { xs: "50vh", md: "75vh" },
+                    width: { xs: "100%", md: "50%" },
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
