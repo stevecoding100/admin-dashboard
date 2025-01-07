@@ -22,7 +22,6 @@ import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import UserProfile from "../../asset/user.png";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -108,7 +107,7 @@ const ProSidebar = () => {
                             alt="profile-user"
                             width="100px"
                             height="100px"
-                            src={UserProfile}
+                            src={`/public/asset/user.png`}
                             style={{
                                 cursor: "pointer",
                                 borderRadius: "50%",
